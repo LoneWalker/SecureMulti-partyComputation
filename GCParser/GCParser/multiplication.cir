@@ -1,0 +1,68 @@
+.input a1 1 4 
+.input a2 1 4 
+.input a3 1 4 
+.input b1 2 4 
+.input b2 2 4 
+.input b3 2 4 
+.input threshold 1 8
+.output result
+b1Xbit0 select b1 0 1
+b1Xbit1 select b1 1 2
+b1Xbit2 select b1 2 3
+b1Xbit3 select b1 3 4
+repeatXb1Xbit0 concat b1Xbit0 b1Xbit0 b1Xbit0 b1Xbit0 
+repeatXb1Xbit1 concat b1Xbit1 b1Xbit1 b1Xbit1 b1Xbit1 
+repeatXb1Xbit2 concat b1Xbit2 b1Xbit2 b1Xbit2 b1Xbit2 
+repeatXb1Xbit3 concat b1Xbit3 b1Xbit3 b1Xbit3 b1Xbit3 
+mulXb1Xbit0 and repeatXb1Xbit0 a1
+mulXb1Xbit1 and repeatXb1Xbit1 a1
+mulXb1Xbit2 and repeatXb1Xbit2 a1
+mulXb1Xbit3 and repeatXb1Xbit3 a1
+concatXb1Xbit0 concat 0:4  mulXb1Xbit0
+concatXb1Xbit1 concat 0:3  mulXb1Xbit1 0:1
+concatXb1Xbit2 concat 0:2  mulXb1Xbit2 0:2
+concatXb1Xbit3 concat 0:1  mulXb1Xbit3 0:3
+addXpart1Xb1 add concatXb1Xbit0 concatXb1Xbit1
+addXpart2Xb1 add concatXb1Xbit2 concatXb1Xbit3
+addXpart3Xb1 add addXpart1Xb1 addXpart2Xb1
+b2Xbit0 select b2 0 1
+b2Xbit1 select b2 1 2
+b2Xbit2 select b2 2 3
+b2Xbit3 select b2 3 4
+repeatXb2Xbit0 concat b2Xbit0 b2Xbit0 b2Xbit0 b2Xbit0 
+repeatXb2Xbit1 concat b2Xbit1 b2Xbit1 b2Xbit1 b2Xbit1 
+repeatXb2Xbit2 concat b2Xbit2 b2Xbit2 b2Xbit2 b2Xbit2 
+repeatXb2Xbit3 concat b2Xbit3 b2Xbit3 b2Xbit3 b2Xbit3 
+mulXb2Xbit0 and repeatXb2Xbit0 a2
+mulXb2Xbit1 and repeatXb2Xbit1 a2
+mulXb2Xbit2 and repeatXb2Xbit2 a2
+mulXb2Xbit3 and repeatXb2Xbit3 a2
+concatXb2Xbit0 concat 0:4  mulXb2Xbit0
+concatXb2Xbit1 concat 0:3  mulXb2Xbit1 0:1
+concatXb2Xbit2 concat 0:2  mulXb2Xbit2 0:2
+concatXb2Xbit3 concat 0:1  mulXb2Xbit3 0:3
+addXpart1Xb2 add concatXb2Xbit0 concatXb2Xbit1
+addXpart2Xb2 add concatXb2Xbit2 concatXb2Xbit3
+addXpart3Xb2 add addXpart1Xb2 addXpart2Xb2
+res1 add addXpart3Xb1 addXpart3Xb2
+b3Xbit0 select b3 0 1
+b3Xbit1 select b3 1 2
+b3Xbit2 select b3 2 3
+b3Xbit3 select b3 3 4
+repeatXb3Xbit0 concat b3Xbit0 b3Xbit0 b3Xbit0 b3Xbit0 
+repeatXb3Xbit1 concat b3Xbit1 b3Xbit1 b3Xbit1 b3Xbit1 
+repeatXb3Xbit2 concat b3Xbit2 b3Xbit2 b3Xbit2 b3Xbit2 
+repeatXb3Xbit3 concat b3Xbit3 b3Xbit3 b3Xbit3 b3Xbit3 
+mulXb3Xbit0 and repeatXb3Xbit0 a3
+mulXb3Xbit1 and repeatXb3Xbit1 a3
+mulXb3Xbit2 and repeatXb3Xbit2 a3
+mulXb3Xbit3 and repeatXb3Xbit3 a3
+concatXb3Xbit0 concat 0:4  mulXb3Xbit0
+concatXb3Xbit1 concat 0:3  mulXb3Xbit1 0:1
+concatXb3Xbit2 concat 0:2  mulXb3Xbit2 0:2
+concatXb3Xbit3 concat 0:1  mulXb3Xbit3 0:3
+addXpart1Xb3 add concatXb3Xbit0 concatXb3Xbit1
+addXpart2Xb3 add concatXb3Xbit2 concatXb3Xbit3
+addXpart3Xb3 add addXpart1Xb3 addXpart2Xb3
+res2 add res1 addXpart3Xb3
+result gteu res2 threshold
